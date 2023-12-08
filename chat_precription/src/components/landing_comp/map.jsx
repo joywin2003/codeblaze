@@ -59,6 +59,7 @@ export default function Map() {
           zoom={10}
           center={center}
           mapContainerClassName="map-container"
+          mapContainerStyle={{ height: "1300px", width: "150%" }}
           options={options}
           onLoad={onLoad}
           onClick={onMapClick}

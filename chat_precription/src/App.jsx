@@ -6,7 +6,6 @@ import Chatbotpage from './pages/chatbotpage'
 
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>

@@ -1,24 +1,31 @@
 import React from "react";
 import Map from "./map";
 import { useLoadScript } from "@react-google-maps/api";
+import { forwardRef } from "react";
 
-export default function MapModal() {
+export default forwardRef(function MapModal(props, ref) {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyDkACgsqx5pVn2bC9NfldAoFmyvLtMCsGY',
+    googleMapsApiKey: "AIzaSyDkACgsqx5pVn2bC9NfldAoFmyvLtMCsGY",
     libraries: ["places"],
   });
 
   if (!isLoaded) return <div>Loading...</div>;
   return (
-    <div className="fixed inset-0 flex items-center justify-center modal-overlay">
-      <dialog open className="bg-white  rounded-lg shadow-md w-96 h-96">
-      <Map/>
-      </dialog>
-    </div>
+    <dialog ref={ref} className="bg-white rounded-md mb-32 shadow-md w-96 h-96 relative">
+      <div className="fixed top-0 left-0 right-0 bg-slate-700 text-white p-4 flex justify-between items-center">
+        <button className="text-white rounded-md" onClick={props.onClose}>
+          Close
+        </button>
+        <button className="text-white rounded-md" onClick={props.onClose}>
+          Start Analysis
+        </button>
+      </div>
+      <Map />
+    </dialog>
   );
-}
-
-{/* <dialog open className="bg-white p-8 rounded-md shadow-md w-96">
+});
+{
+  /* <dialog open className="bg-white p-8 rounded-md shadow-md w-96">
         <h1 className="text-2xl font-bold mb-4">Map</h1>
         <p className="text-gray-600 mb-4">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
@@ -33,4 +40,5 @@ export default function MapModal() {
             Close
           </button>
         </form>
-      </dialog> */}
+      </dialog> */
+}
