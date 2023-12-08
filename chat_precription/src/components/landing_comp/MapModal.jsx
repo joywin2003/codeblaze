@@ -11,7 +11,7 @@ export default function MapModal() {
   if (!isLoaded) return <div>Loading...</div>;
   return (
     <div className="fixed inset-0 flex items-center justify-center modal-overlay">
-      <dialog open className="bg-white p-8 rounded-md shadow-md w-96">
+      <dialog open className="bg-white  rounded-lg shadow-md w-96 h-96">
       <Map/>
       </dialog>
     </div>

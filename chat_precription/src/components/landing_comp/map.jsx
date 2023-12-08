@@ -5,13 +5,15 @@ import {
 } from "@react-google-maps/api";
 
 const handelClick = async (value1, value2) => {
-    const response = await fetch("http://127.0.0.1:8000/product", {
+    const response = await fetch("http://127.0.0.1:8001/get_data", {
         method : "POST",       
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({'text': `${value1},${value2}`})
     })
+    const data = await response.json()
+    console.log(data)
 }
 
 
