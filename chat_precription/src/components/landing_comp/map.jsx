@@ -38,7 +38,7 @@ export default function Map() {
 //   const { marker, setMarker } = useMapContext();
 
   const onMapClick = (event) => {
-    console.log('chicled')
+    console.log('chicked')
     const value1 = event.latLng.lat()
     const value2 = event.latLng.lng()
     handelClick(value1, value2)
@@ -57,6 +57,7 @@ export default function Map() {
           zoom={10}
           center={center}
           mapContainerClassName="map-container"
+           mapContainerStyle={{ height: "1300px", width: "150%" }}
           options={options}
           onLoad={onLoad}
           onClick={onMapClick}
