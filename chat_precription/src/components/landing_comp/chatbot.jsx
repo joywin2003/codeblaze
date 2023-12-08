@@ -9,7 +9,6 @@ function Chatbox() {
     const [value, setValue] = useState('')
     const [chats, setChats] = useState([])
     const messageList = ["hello", "my", "name", "is", "sam"]
-        
         const appendItem = (newItem) => {
             setChats(preItem => [...preItem, newItem])       
           
@@ -22,22 +21,22 @@ function Chatbox() {
             console.log(value)
             appendItem(value)
             setValue("")
-            const response = await fetch("http://127.0.0.1:8000/message", {
+            const response = await fetch("https://ed6a-106-196-22-31.ngrok-free.app/response", {
                 method : "POST",       
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({'message': value})
+                body: JSON.stringify({'text': value})
             })
 
             const data = await response.json()
-            console.log(data)
-            appendItem(data['hello'])
+            console.log(data['response'])
+            const responseString = data['response']
+            // appendItem(responseString)
+            const pattern = /content=/;
+            const modifiedText = responseString.replace(pattern, '');
+            appendItem(modifiedText.slice(1,-1));
             setValue("")
-        }
-
-        const uploadPdf = async (e) => {
-            
         }
 
     
