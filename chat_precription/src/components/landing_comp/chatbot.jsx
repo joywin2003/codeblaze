@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Message from './message'
 import {BsAppIndicator, BsCollectionPlay, BsFillSendFill} from 'react-icons/bs'
 import { useState } from 'react'
@@ -9,7 +9,7 @@ import MapModal from './mapModal'
 function Chatbox() {
     const [value, setValue] = useState('')
     const [chats, setChats] = useState([])
-    const [isMapModalOpen, setMapModalOpen] = useState(false);
+    const dialog = useRef();
         const appendItem = (newItem) => {
             setChats(preItem => [...preItem, newItem])       
           
@@ -22,7 +22,7 @@ function Chatbox() {
             console.log(value)
             appendItem(value)
             setValue("")
-            const response = await fetch("https://ed6a-106-196-22-31.ngrok-free.app/response", {
+            const response = await fetch("https://a6ae-106-196-29-31.ngrok-free.app/response", {
                 method : "POST",       
                 headers: {
                     'Content-Type': 'application/json'
@@ -41,21 +41,20 @@ function Chatbox() {
         }
 
         const openMapModal = () => {
-            setMapModalOpen(true);
-            console.log('open')
+            dialog.current.showModal();
         };
     
         const closeMapModal = () => {
-            setMapModalOpen(false);
+            dialog.current.close();
         };
 
-
+        
 
     return (
         <>
-        {isMapModalOpen && (
-            <MapModal />
-        )}
+        {/* {isMapModalOpen && ( */}
+            <MapModal onClose={closeMapModal} ref={dialog}/>
+        {/* )} */}
         <div className='w-full h-screen bg-slate-800 mx-auto'>
             
                 {chats.map((message, index) => (
@@ -65,7 +64,7 @@ function Chatbox() {
 
             </div>
             <div className='flex fixed bottom-0 p-6 bg-slate-700 w-full'>
-            <button onClick={openMapModal} className='fixed bottom-0 right-0 p-6 bg-slate-700'>open model</button>
+            {/* <button onClick={openMapModal} className='fixed bottom-0 right-0 p-6 bg-slate-700'>open model</button> */}
                 <form onSubmit={messageSend} className='w-full flex'>
                     <input className='input w-full' type="text" value={value} onChange={(e) => setValue(e.target.value)} />
                     <button type='submit' className='ml-4'><BsFillSendFill size={30} /></button>
