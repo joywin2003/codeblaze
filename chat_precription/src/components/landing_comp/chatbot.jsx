@@ -2,13 +2,14 @@ import React from 'react'
 import Message from './message'
 import {BsAppIndicator, BsCollectionPlay, BsFillSendFill} from 'react-icons/bs'
 import { useState } from 'react'
+import MapModal from './mapModal'
 
 
 
 function Chatbox() {
     const [value, setValue] = useState('')
     const [chats, setChats] = useState([])
-    const messageList = ["hello", "my", "name", "is", "sam"]
+    const [isMapModalOpen, setMapModalOpen] = useState(false);
         const appendItem = (newItem) => {
             setChats(preItem => [...preItem, newItem])       
           
@@ -39,13 +40,24 @@ function Chatbox() {
             setValue("")
         }
 
+        const openMapModal = () => {
+            setMapModalOpen(true);
+            console.log('open')
+        };
     
+        const closeMapModal = () => {
+            setMapModalOpen(false);
+        };
 
 
 
     return (
         <>
-            <div className='w-full h-screen bg-slate-800 mx-auto'>
+        {isMapModalOpen && (
+            <MapModal />
+        )}
+        <div className='w-full h-screen bg-slate-800 mx-auto'>
+            
                 {chats.map((message, index) => (
                     <Message message={message} index={index} />
 
@@ -53,12 +65,13 @@ function Chatbox() {
 
             </div>
             <div className='flex fixed bottom-0 p-6 bg-slate-700 w-full'>
+            <button onClick={openMapModal} className='fixed bottom-0 right-0 p-6 bg-slate-700'>open model</button>
                 <form onSubmit={messageSend} className='w-full flex'>
                     <input className='input w-full' type="text" value={value} onChange={(e) => setValue(e.target.value)} />
                     <button type='submit' className='ml-4'><BsFillSendFill size={30} /></button>
                 </form>
+            
             </div>        
-
         </>
     )
 }
