@@ -3,6 +3,7 @@ import Message from './message'
 import {BsAppIndicator, BsCollectionPlay, BsFillSendFill} from 'react-icons/bs'
 import { useState,useRef } from 'react'
 import MapModal from './MapModal'
+import { SiGooglemaps } from "react-icons/si";
 
 
 
@@ -69,10 +70,10 @@ function Chatbox() {
 
             </div>
             <div className='flex fixed bottom-0 p-6 bg-slate-700 w-full'>
-            <button onClick={openMapModal} className='fixed bottom-0 right-0 p-6 bg-slate-700'>open model</button>
                 <form onSubmit={messageSend} className='w-full flex'>
                     <input className='input w-full' type="text" value={value} onChange={(e) => setValue(e.target.value)} />
                     <button type='submit' className='ml-4'><BsFillSendFill size={30} /></button>
+                    <button className='ml-4' onClick={openMapModal}><SiGooglemaps size={30}/></button>
                 </form>
             
             </div>        
