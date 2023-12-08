@@ -2,7 +2,8 @@ import React from 'react'
 import Message from './message'
 import {BsAppIndicator, BsCollectionPlay, BsFillSendFill} from 'react-icons/bs'
 import { useState } from 'react'
-import MapModal from './mapModal'
+import MapModal from './MapModal'
+
 
 
 

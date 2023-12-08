@@ -1,9 +1,24 @@
 import React from "react";
+import Map from "./map";
+import { useLoadScript } from "@react-google-maps/api";
 
 export default function MapModal() {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: 'AIzaSyDkACgsqx5pVn2bC9NfldAoFmyvLtMCsGY',
+    libraries: ["places"],
+  });
+
+  if (!isLoaded) return <div>Loading...</div>;
   return (
     <div className="fixed inset-0 flex items-center justify-center modal-overlay">
       <dialog open className="bg-white p-8 rounded-md shadow-md w-96">
+      <Map/>
+      </dialog>
+    </div>
+  );
+}
+
+{/* <dialog open className="bg-white p-8 rounded-md shadow-md w-96">
         <h1 className="text-2xl font-bold mb-4">Map</h1>
         <p className="text-gray-600 mb-4">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
@@ -18,7 +33,4 @@ export default function MapModal() {
             Close
           </button>
         </form>
-      </dialog>
-    </div>
-  );
-}
+      </dialog> */}
