@@ -4,21 +4,21 @@ import {
   MarkerF,
 } from "@react-google-maps/api";
 
-const handelClick = async (value1, value2) => {
-    const response = await fetch("http://127.0.0.1:8001/get_data", {
-        method : "POST",       
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({'text': `${value1},${value2}`})
-    })
-    const data = await response.json()
-    console.log(data)
-}
+// const handelClick = async (value1, value2) => {
+//     const response = await fetch("https://9742-106-193-17-66.ngrok.io/get_data", {
+//         method : "POST",       
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({'text': `${value1},${value2}`})
+//     })
+//     const data = await response.json()
+//     console.log(data)
+// }
 
 
 
-export default function Map() {
+export default function Map(props) {
     
   const mapRef = useRef();
 
@@ -40,10 +40,10 @@ export default function Map() {
 //   const { marker, setMarker } = useMapContext();
 
   const onMapClick = (event) => {
-    console.log('chicled')
+    console.log('chicked')
     const value1 = event.latLng.lat()
     const value2 = event.latLng.lng()
-    handelClick(value1, value2)
+    props.handelClick(value1, value2)
     
     console.log(event.latLng.lat())
     setMarker({
@@ -59,7 +59,7 @@ export default function Map() {
           zoom={10}
           center={center}
           mapContainerClassName="map-container"
-          mapContainerStyle={{ height: "1300px", width: "150%" }}
+           mapContainerStyle={{ height: "1300px", width: "150%" }}
           options={options}
           onLoad={onLoad}
           onClick={onMapClick}

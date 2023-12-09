@@ -20,7 +20,7 @@ export default forwardRef(function MapModal(props, ref) {
           Start Analysis
         </button>
       </div>
-      <Map />
+      <Map handelClick={props.handelClick}/>
     </dialog>
   );
 });
