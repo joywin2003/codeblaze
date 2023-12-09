@@ -11,12 +11,12 @@ export default forwardRef(function MapModal(props, ref) {
 
   if (!isLoaded) return <div>Loading...</div>;
   return (
-    <dialog ref={ref} className="bg-white rounded-md mb-32 shadow-md w-96 h-96 relative">
+    <dialog ref={ref} className="fixed bg-white rounded-md mb-32 shadow-md w-96 h-96">
       <div className="fixed top-0 left-0 right-0 bg-slate-700 text-white p-4 flex justify-between items-center">
         <button className="text-white rounded-md" onClick={props.onClose}>
           Close
         </button>
-        <button className="text-white rounded-md" onClick={props.onClose}>
+        <button className="text-white rounded-md" onClick={(e)=>props.onFinish(e,"start chat")}>
           Start Analysis
         </button>
       </div>

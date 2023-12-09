@@ -43,9 +43,9 @@ export default function Map(props) {
     console.log('chicked')
     const value1 = event.latLng.lat()
     const value2 = event.latLng.lng()
-    props.handelClick(value1, value2)
+    props.handelClick(event, value1, value2)
     
-    console.log(event.latLng.lat())
+    console.log(value1, value2)
     setMarker({
       lat: event.latLng.lat(),
       lng: event.latLng.lng(),
