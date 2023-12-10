@@ -182,7 +182,6 @@ function Chatbox(props) {
         </button>
     </form>
     </div>}
-
       {/* This is for questions */}
       {props.flag &&<div className="flex fixed bottom-0 p-6 bg-slate-700 w-full">
         <form onSubmit={messageSend} className="w-full flex">
@@ -202,6 +201,7 @@ function Chatbox(props) {
       </div>}
     </>
   );
+
 }
 
 export default Chatbox;
